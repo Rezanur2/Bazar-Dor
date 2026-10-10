@@ -1,0 +1,53 @@
+import Logo from "../../assets/Stack (3).png";
+import Image from "next/image";
+import { LocalDate } from "./LocalDate";
+import NavLinks from "./NavLinks";
+import { Suspense } from "react";
+import Link from "next/link";
+
+const Header = () => {
+  return (
+    <header className="bg-base-200">
+      <div>
+        <div className="mx-auto max-w-7xl px-4 py-4">
+          <div className="flex justify-between items-center">
+            <Link href="/">
+              <div className="flex items-center gap-2">
+                <Image
+                  src={Logo}
+                  alt="Bazar-Dor-Logo"
+                  className="w-10 md:w-12"
+                />
+                <div className="flex flex-col justify-center">
+                  <span className="text-xl font-bold">বাজার দর</span>
+                  <span className="text-xs">
+                    <LocalDate options={{ dateStyle: "full" }} />
+                  </span>
+                </div>
+              </div>
+            </Link>
+            <div className="flex gap-0.5 sm:gap-2 text-sm font-semibold">
+              <button className="btn px-3 sm:px-4 text-xs sm:text-sm py-1 bg-base-200 border-0 cursor-pointer">
+                সাইন ইন
+              </button>
+              <button className="btn px-3 sm:px-4 text-xs sm:text-sm py-1 bg-[#05893E] text-white">
+                সাইন আপ
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="border-y border-base-300">
+          <Suspense
+            fallback={
+              <div className="h-10 w-full bg-base-200 animate-pulse rounded-md mx-auto max-w-6xl"></div>
+            }
+          >
+            <NavLinks />
+          </Suspense>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default Header;
