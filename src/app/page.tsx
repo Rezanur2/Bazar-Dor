@@ -26,7 +26,7 @@ export default async function Home() {
     .slice(0, 6);
 
   return (
-    <main className="mx-auto max-w-7xl flex flex-col px-4 gap-8">
+    <main className="mx-auto max-w-7xl flex flex-col px-4 pb-4 gap-8">
       <Banner />
       <PriceUp upProducts={upProducts} />
       <PriceDown downProducts={downProducts} />

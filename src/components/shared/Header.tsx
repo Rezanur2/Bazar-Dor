@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <header className="bg-[#f3fbf4]">
       <div>
-        <div className="mx-auto max-w-7xl px-4 py-4">
+        <div className="mx-auto max-w-7xl px-12 py-4">
           <div className="flex justify-between items-center">
             <Link href="/">
               <div className="flex items-center gap-2">

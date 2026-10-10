@@ -19,7 +19,7 @@ export const ActiveLink = ({ href, children }: ActiveLinkProps) => {
         className={
           isActive
             ? "flex gap-1.5 px-3.5 py-1.5 items-center rounded-md transition-all duration-200 cursor-pointer bg-[#05893E] text-white font-bold"
-            : "flex gap-1.5 px-3.5 py-1.5 items-center rounded-md transition-all duration-200 cursor-pointer text-base-content hover:bg-[#10af55] hover:text-white"
+            : "flex gap-1.5 px-3.5 py-1.5 items-center rounded-md transition-all duration-200 cursor-pointer text-base-content  hover:bg-[#05893E]/20 hover:text-[#05893E] hover:border-[#05893E]/20"
         }
       >
         {children}

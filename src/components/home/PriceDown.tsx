@@ -5,7 +5,7 @@ import { IProduct } from "@/types";
 const PriceDown = ({downProducts}:{downProducts:IProduct[]}) => {
   return (
     <div className="px-6 py-6">
-      <h2 className="max-sm:text-center font-bold text-xl mb-4">
+      <h2 className="max-sm:text-center font-bold text-lg sm:text-xl mb-4">
         <span className="text-[#05893E] pr-2">▼</span>আজ দাম কমেছে
       </h2>
       <div className="">

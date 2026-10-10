@@ -7,8 +7,8 @@ const NavLinks = async () => {
   const groceryList: ICategory[] = await res.json();
 
   return (
-    <div className="max-w-7xl mx-auto w-full overflow-hidden">
-      <div className="flex gap-1 pl-2 overflow-x-auto whitespace-nowrap scrollbar-none py-1">
+    <div className="max-w-7xl px-12 mx-auto w-full overflow-hidden">
+      <div className="flex gap-1 pl-2 overflow-x-auto whitespace-nowrap scrollbar-none py-0.5">
         {groceryList.map((grocery) => (
           <ActiveLink key={grocery?.id} href={`/category/${grocery?.slug}`}>
             <span> {grocery?.icon}</span>
