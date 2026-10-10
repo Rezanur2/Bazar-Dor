@@ -1,7 +1,10 @@
+import Banner from "@/components/home/Banner";
 
 
 export default function Home() {
   return (
-    <h2 className="font-bold">আজকের বাজারের দাম এক নজরে</h2>
+    <main className="mx-auto max-w-7xl">
+      <Banner />
+    </main>
   );
 }

@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="bn" data-theme="light" className={`${hindSiliguri.className} h-full antialiased`}>
-      <body className="min-h-full flex flex-col text-[#1D271F]">
+      <body className="min-h-full flex flex-col text-[#1D271F] bg-[#E1e8e1]">
         <Header />
-        <main className="mx-auto max-w-7xl px-4 py-6">
+        <main className="px-4 py-6">
           {children}
         </main>
       </body>

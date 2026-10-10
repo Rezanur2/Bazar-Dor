@@ -28,10 +28,10 @@ const Header = () => {
               </div>
             </Link>
             <div className="flex gap-0.5 sm:gap-2 text-sm font-semibold">
-              <button className="btn px-3 sm:px-4 text-xs sm:text-sm py-1 bg-base-200 border-0 cursor-pointer">
+              <button className="btn max-sm:btn-sm px-3 sm:px-4 text-xs sm:text-sm py-1 bg-base-200 border-0 cursor-pointer">
                 সাইন ইন
               </button>
-              <button className="btn px-3 sm:px-4 text-xs sm:text-sm py-1 bg-[#05893E] text-white">
+              <button className="btn max-sm:btn-sm px-3 sm:px-4 text-xs sm:text-sm py-1 bg-[#05893E] text-white">
                 সাইন আপ
               </button>
             </div>
