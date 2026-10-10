@@ -1,4 +1,4 @@
-import Logo from "../../assets/Stack (3).png";
+import Logo from "../../assets/logo.png";
 import Image from "next/image";
 import { LocalDate } from "./LocalDate";
 import NavLinks from "./NavLinks";
@@ -8,7 +8,7 @@ import Marquee from "../Marquee";
 
 const Header = () => {
   return (
-    <header className="bg-base-200">
+    <header className="bg-[#f3fbf4]">
       <div>
         <div className="mx-auto max-w-7xl px-4 py-4">
           <div className="flex justify-between items-center">
@@ -28,10 +28,10 @@ const Header = () => {
               </div>
             </Link>
             <div className="flex gap-0.5 sm:gap-2 text-sm font-semibold">
-              <button className="btn max-sm:btn-sm px-3 sm:px-4 text-xs sm:text-sm py-1 bg-base-200 border-0 cursor-pointer">
+              <button className="btn max-sm:btn-sm px-3 sm:px-4 text-xs sm:text-sm py-1 bg-base-200 rounded-lg hover:bg-[#046E32] hover:text-white text-base-content border-0 transition-all duration-200 cursor-pointer">
                 সাইন ইন
               </button>
-              <button className="btn max-sm:btn-sm px-3 sm:px-4 text-xs sm:text-sm py-1 bg-[#05893E] text-white">
+              <button className="btn max-sm:btn-sm px-3 sm:px-4 text-xs sm:text-sm py-1 bg-[#05893E] text-white hover:bg-[#046E32] rounded-lg border-0 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer">
                 সাইন আপ
               </button>
             </div>

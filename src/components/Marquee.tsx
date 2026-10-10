@@ -2,45 +2,24 @@ import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
 import baseUrl from "@/services/baseUrl";
 import Link from "next/link";
+import { toBanglaNumber, toBanglaUnit } from "@/utils/format";
+import { IProduct } from "@/types";
 
-interface IHeadline {
-  id: string;
-  slug: string;
-  categoryIcon: string;
-  nameBn: string;
-  today: number | string;
-  unit: string;
-  change: {
-    dir: string;
-    pct: number;
-  };
-}
-
-const unitInBangla: { [key: string]: string } = {
-  kg: "কেজি",
-  litre: "লিটার",
-  liter: "লিটার",
-  piece: "টি",
-  dozen: "ডজন",
-  gram: "গ্রাম",
-};
 
 const Marquee = async () => {
   const res = await fetch(`${baseUrl}/api/bazardor/products`);
-  const headlines: IHeadline[] = await res.json();
-  const banglaNumber = (number: number) => {
-    return number.toLocaleString("bn-BD");
-  }
+  const headlines: IProduct[] = await res.json();
 
   return (
-    <div className="w-full py-2 bg-base-200 border-y border-base-300 overflow-hidden">
+    <div className="w-full py-2 bg-[f0f5f0] border-y border-base-300 overflow-hidden">
       <MarqueeText direction="right" duration={25}>
         <div className="flex items-center divide-x divide-base-300 rtl:divide-x-reverse">
           {headlines.map((headline) => {
             const isUp = headline.change.dir === "up";
-            const todayPriceBn = banglaNumber(Number(headline.today));
-            const changePctBn = banglaNumber(headline.change.pct);
-            const unitBn = unitInBangla[headline.unit.toLowerCase()];
+            const isDown = headline.change.dir === "down";
+            const todayPriceBn = toBanglaNumber(headline.today);
+            const changePctBn = toBanglaNumber(headline.change.pct);
+            const unitBn = toBanglaUnit(headline.unit);
 
             return (
               <Link
@@ -49,16 +28,23 @@ const Marquee = async () => {
                 className="flex items-center gap-2 px-6 text-sm font-medium hover:text-green-600 shrink-0 transition-colors duration-200"
               >
                 <span>{headline.categoryIcon}</span>
-                <span className="text-sm font-semibold text-base-content hover:text-green-600">
+                <span className="text-xs sm:text-sm font-semibold text-base-content hover:text-green-600">
                   {headline.nameBn}
                 </span>
-                <span className="font-normal tracking-wide text-sm text-gray-600">
+                <span className="font-normal tracking-wide text-xs sm:text-sm text-gray-600">
                   {todayPriceBn} টাকা/{unitBn}
                 </span>
-                <span
-                  className={`flex items-center gap-0.5 font-bold ${isUp ? "text-red-500" : "text-green-600"}`}
+                 <span
+                  className={`flex items-center gap-0.5 max-sm:text-xs font-bold ${
+                    isUp 
+                    ? "text-red-500" 
+                    : isDown 
+                    ? "text-green-600" 
+                    : "text-gray-500"
+                  }`}
                 >
-                  {isUp ? "▲" : "▼"} {changePctBn}%
+                  <span>{isUp ? "▲" : isDown ? "▼" : "—"}</span>
+                  <span>{changePctBn}%</span>
                 </span>
               </Link>
             );
