@@ -4,6 +4,7 @@ import { LocalDate } from "./LocalDate";
 import NavLinks from "./NavLinks";
 import { Suspense } from "react";
 import Link from "next/link";
+import Marquee from "../Marquee";
 
 const Header = () => {
   return (
@@ -45,6 +46,13 @@ const Header = () => {
             <NavLinks />
           </Suspense>
         </div>
+        <Suspense
+          fallback={
+            <div className="h-10 w-full bg-base-200 animate-pulse rounded-md mx-auto max-w-6xl"></div>
+          }
+        >
+          <Marquee />
+        </Suspense>
       </div>
     </header>
   );

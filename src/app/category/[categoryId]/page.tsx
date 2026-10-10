@@ -16,7 +16,7 @@ const CategoryProductPage = async ({ params }: pageProps) => {
   console.log(data);
 
   return (
-    <div className="p-4 max-w-6xl mx-auto">
+    <div className="p-4 max-w-7xl mx-auto">
       <h1 className="text-xl font-bold">
         ক্যাটাগরি: <span className="text-[#05893E]">{categoryId}</span>
       </h1>
