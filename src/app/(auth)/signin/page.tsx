@@ -6,7 +6,6 @@ import Google from "@/assets/Google.png";
 import { signIn } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { createAuthClient } from "better-auth/client";
 const SignInPage = () => {
   const router = useRouter();
   const onSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
@@ -36,8 +35,21 @@ const SignInPage = () => {
     const data = await signIn.social({
       provider: "google",
     });
+    toast.success("Signing in with google!")
     console.log(data);
   };
+
+  const handleGitHubSignIn = async () => {
+    try {
+      await signIn.social({
+        provider: "github",
+        callbackURL: "/",
+      });
+      toast.success("Github দিয়ে সাইন আপ করা হয়েছে")
+    } catch {
+      toast.error("Github দিয়ে সাইন আপ করা যায়নি!");
+    }
+  }
   return (
     <section className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center px-4 py-6">
       <div className="mb-5 text-center">
@@ -111,6 +123,7 @@ const SignInPage = () => {
           </button>
 
           <button
+            onClick={handleGitHubSignIn}
             type="button"
             className="btn btn-outline h-10 min-h-10 border-[#e1e8e1] bg-transparent text-sm rounded-lg font-semibold text-[#1D271F] hover:border-[#05893E] hover:bg-[#05893E]/5"
           >
