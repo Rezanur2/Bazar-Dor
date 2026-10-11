@@ -27,7 +27,7 @@ const Marquee = async () => {
                 key={headline.id}
                 className="flex items-center gap-2 px-6 text-sm font-medium hover:text-green-600 shrink-0 transition-colors duration-200"
               >
-                <span>{headline.categoryIcon}</span>
+                <span>{headline.image}</span>
                 <span className="text-xs sm:text-sm font-semibold text-base-content hover:text-green-600">
                   {headline.nameBn}
                 </span>

@@ -42,15 +42,15 @@ const ProductCard = ({ product }: ProductCardProps) => {
           </span>
           <span className="font-black text-lg sm:text-xl text-[#1D271F] font-sans">
             {todayPriceBn}
-            <span className="text-sm font-bold text-[#1D271F]"> টাকা</span>
+            <span className="text-xs sm:text-sm font-bold text-[#1D271F]"> টাকা</span>
           </span>
         </div>
         <div
           className={`flex items-center gap-0.5 px-2.5 py-1 rounded-full text-xs font-bold shadow-sm border transition-transform duration-300 group-hover:scale-105 ${
             isUp
-              ? "bg-green-50 text-green-600 border-green-100"
-              : isDown
-                ? "bg-red-50 text-red-600 border-red-100"
+            ? "bg-red-50 text-red-600 border-red-100"
+            : isDown
+            ? "bg-green-50 text-green-600 border-green-100"
                 : "bg-gray-100 text-gray-500 border-gray-200"
           }`}
         >
