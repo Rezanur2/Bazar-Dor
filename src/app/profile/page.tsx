@@ -39,7 +39,8 @@ export default function ProfilePage() {
         ...newUserData,
       });
       
-      toast.success("তথ্য সফলভাবে আপডেট করা হয়েছে!");
+    toast.success("তথ্য সফলভাবে আপডেট করা হয়েছে!");
+    router.push("/")
       router.refresh(); 
     
   };
@@ -128,8 +129,6 @@ export default function ProfilePage() {
               className="input input-bordered h-11 w-full border-base-300 bg-transparent text-sm font-semibold outline-none focus:border-[#05893E] focus:outline-none rounded-xl px-4"
             />
           </div>
-
-          {/* 🟢 আপনার নিজস্ব ব্র্যান্ড গ্রিন কালার আপডেট বোতাম */}
           <button
             type="submit"
             className="btn h-11 min-h-11 w-full border-0 bg-[#05893E] hover:bg-[#046E32] text-sm font-bold text-[#F3FbF4] shadow-sm rounded-xl transition-all duration-200 cursor-pointer mt-2"
@@ -138,8 +137,6 @@ export default function ProfilePage() {
           </button>
         </form>
       </div>
-
-      {/* বটম ব্যাক হোম লিংক */}
       <Link
         href="/"
         className="mt-6 mx-auto text-xs sm:text-sm font-semibold text-[#1D271F]/50 hover:text-[#05893E] hover:underline transition-colors"

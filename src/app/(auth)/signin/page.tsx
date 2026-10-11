@@ -32,15 +32,12 @@ const SignInPage = () => {
     }
   };
 
-const authClient = createAuthClient();
-
-    const handleGoogleSignIn = async () => {
-    const signIn = async () => {
-  const data = await authClient.signIn.social({
-    provider: "google",
-  });
-};
-}
+  const handleGoogleSignIN = async () => {
+    const data = await signIn.social({
+      provider: "google",
+    });
+    console.log(data);
+  };
   return (
     <section className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center px-4 py-6">
       <div className="mb-5 text-center">
@@ -104,8 +101,8 @@ const authClient = createAuthClient();
         </div>
 
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-                  <button
-                      onClick={handleGoogleSignIn}
+          <button
+            onClick={handleGoogleSignIN}
             type="button"
             className="btn btn-outline h-10 min-h-10 border-[#e1e8e1] bg-transparent rounded-lg text-sm font-semibold text-[#1D271F] hover:border-[#05893E] hover:bg-[#05893E]/5"
           >
