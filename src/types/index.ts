@@ -6,7 +6,7 @@ export interface IProduct {
   unit: string;
   image?: string;
   icon?: string;
-  categoryIcon:string
+  categoryIcon: string;
   change: {
     dir: string;
     pct: number | string;
@@ -18,4 +18,18 @@ export interface ICategory {
   slug: string;
   nameBn: string;
   icon: string;
+}
+
+export interface IMarketPrice {
+  market: string;
+  division: string;
+  min: number | string;
+  max: number | string;
+}
+
+export interface IProductDetails extends IProduct {
+  categoryNameBn: string;
+  yesterday?: number | string;
+  markets?: IMarketPrice[];
+  category?: string;
 }

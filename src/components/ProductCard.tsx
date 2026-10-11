@@ -9,12 +9,11 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
   const isUp = product.change.dir === "up";
   const isDown = product.change.dir === "down";
-
   const todayPriceBn = toBanglaNumber(product.today);
 
   const changePctBn = toBanglaNumber(Math.abs(Number(product.change.pct)));
   const unitBn = toBanglaUnit(product.unit);
-  const detailUrl = `/product/${product.slug || product.id}`;
+  const detailUrl = `/product/${product?.slug || product?.id}`;
 
   return (
     <Link

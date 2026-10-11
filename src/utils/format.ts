@@ -1,19 +1,18 @@
-const unitInBangla: { [key: string]: string } = {
+const unitInBangla: Record<string, string> = {
   kg: "কেজি",
   litre: "লিটার",
   liter: "লিটার",
   piece: "টি",
   dozen: "ডজন",
   gram: "গ্রাম",
-  hali: "হালি"
+  hali: "হালি",
 };
 
 export const toBanglaNumber = (num: number | string): string => {
-  const absoluteNumber = Math.abs(Number(num));
-  return absoluteNumber.toLocaleString("bn-BD");
+  const value = Number(num);
+  if (!Number.isFinite(value)) return "০";
+  return Math.abs(value).toLocaleString("bn-BD");
 };
 
-export const toBanglaUnit = (unit: string): string => {
-  if (!unit) return "";
-  return unitInBangla[unit.toLowerCase()] || unit;
-};
+export const toBanglaUnit = (unit: string): string =>
+  unitInBangla[unit?.toLowerCase()] || unit || "";

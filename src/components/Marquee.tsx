@@ -5,13 +5,12 @@ import Link from "next/link";
 import { toBanglaNumber, toBanglaUnit } from "@/utils/format";
 import { IProduct } from "@/types";
 
-
 const Marquee = async () => {
   const res = await fetch(`${baseUrl}/api/bazardor/products`);
   const headlines: IProduct[] = await res.json();
 
   return (
-    <div className="w-full py-2 bg-[f0f5f0] border-y border-base-300 overflow-hidden">
+    <div className="w-full py-2 border-y border-base-300 shadow-sm overflow-hidden">
       <MarqueeText direction="right" duration={25}>
         <div className="flex items-center divide-x divide-base-300 rtl:divide-x-reverse">
           {headlines.map((headline) => {
@@ -20,10 +19,11 @@ const Marquee = async () => {
             const todayPriceBn = toBanglaNumber(headline.today);
             const changePctBn = toBanglaNumber(headline.change.pct);
             const unitBn = toBanglaUnit(headline.unit);
+            console.log(headline);
 
             return (
               <Link
-                href={`/category/${headline.slug}`}
+                href={`/product/${headline.slug}`}
                 key={headline.id}
                 className="flex items-center gap-2 px-6 text-sm font-medium hover:text-green-600 shrink-0 transition-colors duration-200"
               >
@@ -34,13 +34,13 @@ const Marquee = async () => {
                 <span className="font-normal tracking-wide text-xs sm:text-sm text-gray-600">
                   {todayPriceBn} টাকা/{unitBn}
                 </span>
-                 <span
+                <span
                   className={`flex items-center gap-0.5 max-sm:text-xs font-bold ${
-                    isUp 
-                    ? "text-red-500" 
-                    : isDown 
-                    ? "text-green-600" 
-                    : "text-gray-500"
+                    isUp
+                      ? "text-red-500"
+                      : isDown
+                        ? "text-green-600"
+                        : "text-gray-500"
                   }`}
                 >
                   <span>{isUp ? "▲" : isDown ? "▼" : "—"}</span>

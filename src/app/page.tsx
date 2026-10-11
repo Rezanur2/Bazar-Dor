@@ -5,6 +5,8 @@ import PriceUp from "@/components/home/PriceUp";
 import baseUrl from "@/services/baseUrl";
 import { IProduct } from "@/types";
 
+export const instant = false; 
+
 const getProducts = async (): Promise<IProduct[]> => {
   const res = await fetch(`${baseUrl}/api/bazardor/products`);
   const data = await res.json();
