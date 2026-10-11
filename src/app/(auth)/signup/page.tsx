@@ -1,9 +1,48 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import Github from "@/assets/github.png";
 import Google from "@/assets/Google.png";
+import { authClient, signIn } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const SignUpPage = () => {
+  const router = useRouter();
+  const onSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const user = Object.fromEntries(formData.entries()) as {
+      name: string;
+      email: string;
+      password: string;
+      confirmPassword: string;
+    };
+
+    if (user.password !== user.confirmPassword) {
+      toast.error("পাসওয়ার্ড দুটি মিলেনি!");
+      return;
+    }
+
+    const { data, error } = await authClient.signUp.email({
+      ...user,
+      callbackURL: "/signin",
+    });
+    if (data) {
+      toast.success("অ্যাকাউন্ট তৈরি সফল হয়েছে!");
+      router.push("/signin");
+    }
+    if (error) {
+      toast.error(error.message || "রেজিস্ট্রেশন করা যায়নি।");
+    }
+  };
+
+ const handleGoogleSignIN = async () => {
+    const data = await signIn.social({
+      provider: "google"
+    });
+    console.log(data);
+  }
 
   return (
     <section className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center px-4 py-6 pb-10">
@@ -16,7 +55,7 @@ const SignUpPage = () => {
         </p>
       </div>
       <div className="w-full max-w-md rounded-xl border border-[#e1e8e1] bg-[#f9fbf9] p-5 shadow-sm sm:p-6">
-        <form className="space-y-3">
+        <form onSubmit={onSubmit} className="space-y-3">
           <div>
             <label
               htmlFor="name"
@@ -110,6 +149,7 @@ const SignUpPage = () => {
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           <button
             type="button"
+            onClick={handleGoogleSignIN}
             className="btn btn-outline h-10 min-h-10 border-[#e1e8e1] bg-transparent rounded-lg text-sm font-semibold text-[#1D271F] hover:border-[#05893E] hover:bg-[#05893E]/5"
           >
             <Image src={Google} alt="Google" className="h-5 w-5" />
@@ -134,7 +174,10 @@ const SignUpPage = () => {
           </Link>
         </p>
       </div>
-      <Link href={"/"} className="mt-6 text-xs sm:text-sm text[#1d271f]/60 hover:text-[#046E32]">
+      <Link
+        href={"/"}
+        className="mt-6 text-xs sm:text-sm text-[#1d271f]/60 hover:text-[#046E32]"
+      >
         ← হোম পেজে ফিরে যান
       </Link>
     </section>

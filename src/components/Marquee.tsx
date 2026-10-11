@@ -19,7 +19,6 @@ const Marquee = async () => {
             const todayPriceBn = toBanglaNumber(headline.today);
             const changePctBn = toBanglaNumber(headline.change.pct);
             const unitBn = toBanglaUnit(headline.unit);
-            console.log(headline);
 
             return (
               <Link

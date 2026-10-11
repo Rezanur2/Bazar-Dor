@@ -1,21 +1,56 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import Github from "@/assets/github.png";
 import Google from "@/assets/Google.png";
-
+import { signIn } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import { createAuthClient } from "better-auth/client";
 const SignInPage = () => {
-    return (
-            <section className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center px-4 py-6">
+  const router = useRouter();
+  const onSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const user = Object.fromEntries(formData.entries()) as {
+      email: string;
+      password: string;
+    };
+
+    const { data, error } = await signIn.email({
+      ...user,
+      callbackURL: "/",
+    });
+
+    if (data) {
+      toast.success("সাইন ইন সফল হয়েছে!");
+      router.push("/");
+    }
+
+    if (error) {
+      toast.error("ইমেইল বা পাসওয়ার্ড ভুল হয়েছে!");
+    }
+  };
+
+const authClient = createAuthClient();
+
+    const handleGoogleSignIn = async () => {
+    const signIn = async () => {
+  const data = await authClient.signIn.social({
+    provider: "google",
+  });
+};
+}
+  return (
+    <section className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center px-4 py-6">
       <div className="mb-5 text-center">
-        <h1 className="text-2xl font-bold text-[#1D271F]">
-          সাইন ইন
-        </h1>
+        <h1 className="text-2xl font-bold text-[#1D271F]">সাইন ইন</h1>
         <p className="mt-1 text-sm text-[#1D271F]/70">
           বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে অ্যাকাউন্টে ঢুকুন।
         </p>
       </div>
       <div className="w-full max-w-md rounded-xl border border-[#e1e8e1] bg-[#f9fbf9] p-5 shadow-sm sm:p-6">
-        <form className="space-y-3">
+        <form onSubmit={onSubmit} className="space-y-3">
           <div>
             <label
               htmlFor="email"
@@ -47,7 +82,7 @@ const SignInPage = () => {
               name="password"
               type="password"
               placeholder="একটি পাসওয়ার্ড তৈরি করুন কমপক্ষে ৮ অক্ষর"
-              autoComplete="new-password"
+              autoComplete="current-password"
               minLength={8}
               required
               className="input input-bordered h-10 w-full border-[#e1e8e1] bg-transparent text-sm outline-none focus:border-[#05893E] focus:outline-none"
@@ -69,7 +104,8 @@ const SignInPage = () => {
         </div>
 
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-          <button
+                  <button
+                      onClick={handleGoogleSignIn}
             type="button"
             className="btn btn-outline h-10 min-h-10 border-[#e1e8e1] bg-transparent rounded-lg text-sm font-semibold text-[#1D271F] hover:border-[#05893E] hover:bg-[#05893E]/5"
           >
@@ -88,18 +124,21 @@ const SignInPage = () => {
         <p className="mt-4 text-center text-sm text-[#1D271F]/70">
           অ্যাকাউন্ট নেই?
           <Link
-            href="/signin"
+            href="/signup"
             className="font-semibold text-[#05893E] hover:text-[#046E32] hover:underline ml-1"
           >
-             সাইন আপ করুন
+            সাইন আপ করুন
           </Link>
         </p>
       </div>
-      <Link href={"/"} className="mt-6 text-xs sm:text-sm text[#1d271f]/60 hover:text-[#046E32] ">
+      <Link
+        href={"/"}
+        className="mt-6 text-xs sm:text-sm text[#1d271f]/60 hover:text-[#046E32] "
+      >
         ← হোম পেজে ফিরে যান
       </Link>
     </section>
-    );
+  );
 };
 
 export default SignInPage;
