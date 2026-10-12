@@ -9,7 +9,7 @@ const PriceUp = ({ upProducts }: { upProducts: IProduct[] }) => {
         <span className="text-red-600 pr-2">▲</span>আজ দাম বেড়েছে
       </h2>
       <div>
-        <div className="px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center w-full sm:px-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center w-full sm:px-0">
           <Suspense
             fallback={<div className="text-gray-400">লোড হচ্ছে...</div>}
           >

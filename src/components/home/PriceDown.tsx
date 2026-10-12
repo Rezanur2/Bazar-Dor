@@ -9,7 +9,7 @@ const PriceDown = ({downProducts}:{downProducts:IProduct[]}) => {
         <span className="text-[#05893E] pr-2">▼</span>আজ দাম কমেছে
       </h2>
       <div className="">
-        <div className="px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center w-full sm:px-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center w-full sm:px-0">
           <Suspense
             fallback={<div className="text-gray-400">লোড হচ্ছে...</div>}
           >

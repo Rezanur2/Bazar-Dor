@@ -4,7 +4,7 @@ import Hero from "@/assets/bazar-hero.png";
 
 const Banner = () => {
   return (
-    <div className="flex border border-base-300 shadow-sm flex-col max-md:items-center max-md:text-center max-md:px-10 md:grid grid-cols-3 md:justify-between bg-base-200 p-6 my-3 mx-6 rounded-3xl">
+    <div className="flex border border-base-300 shadow-sm flex-col max-md:items-center max-md:text-center max-md:px-10 md:grid grid-cols-3 md:justify-between bg-base-200 p-6 my-3 mx-2 sm:mx-6 rounded-3xl">
       <div className="col-span-2">
         <p className="badge p-4 rounded-2xl font-semibold bg-[#05893E1A] text-[#05893e] text-xs md:text-sm mb-2">
           <LocalDate options={{ dateStyle: "full" }} />
