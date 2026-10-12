@@ -141,9 +141,9 @@ bazar-dor/
 │   ├── types/
 │   │   └── index.ts
 │   │
-│   └── utils/
-│       ├── format.ts
-│       └── proxy.ts
+│   ├── utils/
+│   │   └── format.ts
+│   └── proxy.ts
 │
 ├── .env
 ├── .gitignore
@@ -188,16 +188,28 @@ npm install
 
 ### 4. Configure Environment Variables
 
-Create a `.env` file locally if required by your configuration. Add the environment variables needed for Better Auth and any external authentication providers.
+Create a `.env` file in the project root and add the environment variables required by your application.
 
 Example:
 
 ```env
+MONGODB_URL=your_mongodb_connection_string
 BETTER_AUTH_SECRET=your_secret_key
 BETTER_AUTH_URL=http://localhost:3000
+
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+
+GITHUB_CLIENT_ID=your_github_client_id
+GITHUB_CLIENT_SECRET=your_github_client_secret
 ```
 
-Use the exact variable names expected by your implementation. Never commit real secrets, OAuth credentials, or private API keys.
+**Important:**
+- Replace the placeholder values with your own credentials.
+- Use the exact environment variable names configured in your project.
+- Configure the appropriate production URLs and OAuth callback URLs when deploying.
+- Never commit your `.env` file or expose real secrets, OAuth credentials, or private API keys in your repository.
+
 
 ### 5. Start the Development Server
 

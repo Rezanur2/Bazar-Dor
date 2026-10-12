@@ -18,7 +18,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <Link
       href={detailUrl}
-      className="bg-base-100 border border-base-300 rounded-2xl p-4 shadow-sm flex flex-col justify-between gap-4 w-full max-w-85 sm:max-w-none hover:shadow-md hover:border-green-600/40 hover:-translate-y-1 active:translate-y-0 transition-all duration-300 ease-in-out cursor-pointer text-left overflow-hidden group"
+      className="bg-base-100 border border-base-300 rounded-2xl p-4 shadow-sm flex flex-col justify-between gap-4 w-full max-w-100 sm:max-w-none hover:shadow-md hover:border-green-600/40 hover:-translate-y-1 active:translate-y-0 transition-all duration-300 ease-in-out cursor-pointer text-left overflow-hidden group"
     >
       <div className="flex items-center gap-3">
         <div className="w-10 sm:w-12 h-10 sm:h-12 bg-base-200 rounded-xl flex items-center justify-center text-2xl select-none shrink-0 transition-transform duration-300 ease-in-out group-hover:scale-105">
