@@ -39,8 +39,9 @@ const SignUpPage = () => {
   };
 
   const handleGoogleSignIN = async () => {
-    toast.success("Google দিয়ে সাইন ইন করা হচ্ছে...", {
+    toast.loading("Google দিয়ে সাইন ইন করা হচ্ছে...", {
       id: "social-signin",
+      duration: 1500,
     });
     try {
       const { error } = await signIn.social({
@@ -60,8 +61,9 @@ const SignUpPage = () => {
     }
   };
   const handleGitHubSignIn = async () => {
-    toast.success("GitHub দিয়ে সাইন ইন করা হচ্ছে...", {
+    toast.loading("GitHub দিয়ে সাইন ইন করা হচ্ছে...", {
       id: "social-signin",
+      duration: 1500,
     });
     try {
       const { error } = await signIn.social({
