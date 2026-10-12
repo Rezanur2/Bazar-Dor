@@ -26,7 +26,7 @@ const Loading = () => {
         <section className="rounded-2xl bg-base-100 p-5">
           <div className="mb-4 h-6 w-36 rounded bg-gray-200" />
 
-          <div className="grid gap-3 grid-cols-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
             {[1, 2, 3].map((item) => (
               <div
                 key={item}
