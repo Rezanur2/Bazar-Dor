@@ -39,7 +39,7 @@ const SignUpPage = () => {
   };
 
   const handleGoogleSignIN = async () => {
-    toast.loading("Google দিয়ে সাইন ইন করা হচ্ছে...", {
+    toast.success("Google দিয়ে সাইন ইন করা হচ্ছে...", {
       id: "social-signin",
     });
     try {
@@ -60,14 +60,13 @@ const SignUpPage = () => {
     }
   };
   const handleGitHubSignIn = async () => {
-    toast.loading("GitHub দিয়ে সাইন ইন করা হচ্ছে...", {
+    toast.success("GitHub দিয়ে সাইন ইন করা হচ্ছে...", {
       id: "social-signin",
     });
     try {
       const { error } = await signIn.social({
         provider: "github",
         callbackURL: "/?login=success",
-        errorCallbackURL: "/signin",
       });
       if (error) {
         toast.error("GitHub দিয়ে সাইন ইন করা যায়নি!", {
