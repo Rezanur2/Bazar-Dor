@@ -34,6 +34,7 @@ const SignInPage = () => {
   };
 
   useEffect(() => {
+  toast.dismiss("social-signin");
   const params = new URLSearchParams(window.location.search);
 
   if (params.get("redirected") === "1") {
@@ -57,6 +58,7 @@ const SignInPage = () => {
       const { error } = await signIn.social({
       provider: "google",
       callbackURL: "/?login=success",
+      errorCallbackURL: "/signin",
       });
         if (error) {
           toast.error("Google দিয়ে সাইন ইন করা যায়নি!", {
@@ -78,6 +80,7 @@ const SignInPage = () => {
       const { error } = await signIn.social({
         provider: "github",
         callbackURL: "/?login=success",
+        errorCallbackURL: "/signin",
       });
       if (error) {
         toast.error("GitHub দিয়ে সাইন ইন করা যায়নি!", {
@@ -85,11 +88,11 @@ const SignInPage = () => {
       });
     }
     } catch {
-      toast.error("Github দিয়ে সাইন ইন করা যায়নি!", {
-        id: "social-signin",
+      toast.error("GitHub দিয়ে সাইন ইন করা যায়নি!", {
+      id: "social-signin",
       });
     }
-  }
+  };
   return (
     <section className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center px-4 py-6">
       <div className="mb-5 text-center">

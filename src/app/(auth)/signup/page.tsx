@@ -39,16 +39,17 @@ const SignUpPage = () => {
   };
 
   const handleGoogleSignIN = async () => {
-      toast.loading("Google দিয়ে সাইন ইন করা হচ্ছে...", {
+    toast.loading("Google দিয়ে সাইন ইন করা হচ্ছে...", {
       id: "social-signin",
     });
     try {
       const { error } = await signIn.social({
-      provider: "google",
-      callbackURL: "/?login=success",
+        provider: "google",
+        callbackURL: "/?login=success",
+        errorCallbackURL: "/signin",
       });
-        if (error) {
-          toast.error("Google দিয়ে সাইন ইন করা যায়নি!", {
+      if (error) {
+        toast.error("Google দিয়ে সাইন ইন করা যায়নি!", {
           id: "social-signin",
         });
       }
@@ -59,23 +60,27 @@ const SignUpPage = () => {
     }
   };
   const handleGitHubSignIn = async () => {
-      toast.loading("GitHub দিয়ে সাইন ইন করা হচ্ছে...", {
+    toast.loading("GitHub দিয়ে সাইন ইন করা হচ্ছে...", {
       id: "social-signin",
     });
     try {
       const { error } = await signIn.social({
         provider: "github",
         callbackURL: "/?login=success",
+        errorCallbackURL: "/signin",
       });
       if (error) {
         toast.error("GitHub দিয়ে সাইন ইন করা যায়নি!", {
-        id: "social-signin",
+          id: "social-signin",
+        });
+      }
+    } catch {
+      toast.error("GitHub দিয়ে সাইন ইন করা যায়নি!", {
+      id: "social-signin",
       });
     }
-    } catch {
-      toast.error("Github দিয়ে সাইন ইন করা যায়নি!");
-    }
-  }
+  };
+
   return (
     <section className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center px-4 py-6 pb-10">
       <div className="mb-5 text-center">
