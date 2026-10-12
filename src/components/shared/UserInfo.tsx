@@ -1,6 +1,6 @@
 "use client";
 import Avatar from "@/assets/demoMaleAvator.jpg";
-
+import { useEffect } from "react";
 import { signOut, useSession } from "@/lib/auth-client";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,10 +8,19 @@ import { usePathname } from "next/navigation";
 import toast from "react-hot-toast";
 
 const UserInfo = () => {
-  const { data: session } = useSession();
+  const { data: session, isPending } = useSession();
   const user = session?.user;
   const pathname = usePathname();
 
+  useEffect(() => {
+    if (isPending || !session?.user) return;
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("login") === "success") {
+      toast.dismiss("social-signin");
+      toast.success("সফলভাবে সাইন ইন হয়েছে!");
+      window.history.replaceState({}, "", window.location.pathname);
+    }
+  }, [session, isPending]);
   const handleSignOut = async () => {
     try {
       const { error } = await signOut();
@@ -62,7 +71,7 @@ const UserInfo = () => {
                   {user.email}
                 </span>
               </div>
-              <li>
+              {pathname !== "/profile" && (<li>
                 <Link
                   href="/profile"
                   className="flex items-center gap-3 px-3 py-2.5 rounded-xl font-semibold text-sm text-[#1D271F] hover:bg-[#05893E]/5 hover:text-[#05893E] active:bg-[#05893E] active:text-white transition-colors"
@@ -70,7 +79,7 @@ const UserInfo = () => {
                   <span className="text-base">👤</span>
                   <span>আমার প্রোফাইল</span>
                 </Link>
-              </li>
+              </li>)}
 
               {pathname !== "/" && (
                 <li>

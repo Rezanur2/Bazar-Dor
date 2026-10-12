@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Github from "@/assets/github.png";
 import Google from "@/assets/Google.png";
-import { authClient, signIn } from "@/lib/auth-client";
+import { signIn, signUp } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
@@ -24,8 +24,9 @@ const SignUpPage = () => {
       return;
     }
 
-    const { data, error } = await authClient.signUp.email({
-      ...user,
+    const { confirmPassword, ...userData } = user;
+    const { data, error } = await signUp.email({
+      ...userData,
       callbackURL: "/signin",
     });
     if (data) {
@@ -37,22 +38,42 @@ const SignUpPage = () => {
     }
   };
 
- const handleGoogleSignIN = async () => {
-    const data = await signIn.social({
-      provider: "google"
+  const handleGoogleSignIN = async () => {
+      toast.loading("Google দিয়ে সাইন ইন করা হচ্ছে...", {
+      id: "social-signin",
     });
-    toast.success("Signing in with google!")
-    console.log(data);
-  }
-  const handleGitHubSignIn = async () => {
     try {
-      await signIn.social({
-        provider: "github",
-        callbackURL: "/",
+      const { error } = await signIn.social({
+      provider: "google",
+      callbackURL: "/?login=success",
       });
-      toast.success("Github দিয়ে সাইন আপ করা হয়েছে")
+        if (error) {
+          toast.error("Google দিয়ে সাইন ইন করা যায়নি!", {
+          id: "social-signin",
+        });
+      }
     } catch {
-      toast.error("Github দিয়ে সাইন আপ করা যায়নি!");
+      toast.error("Google দিয়ে সাইন ইন করা যায়নি!", {
+        id: "social-signin",
+      });
+    }
+  };
+  const handleGitHubSignIn = async () => {
+      toast.loading("GitHub দিয়ে সাইন ইন করা হচ্ছে...", {
+      id: "social-signin",
+    });
+    try {
+      const { error } = await signIn.social({
+        provider: "github",
+        callbackURL: "/?login=success",
+      });
+      if (error) {
+        toast.error("GitHub দিয়ে সাইন ইন করা যায়নি!", {
+        id: "social-signin",
+      });
+    }
+    } catch {
+      toast.error("Github দিয়ে সাইন ইন করা যায়নি!");
     }
   }
   return (
@@ -161,7 +182,7 @@ const SignUpPage = () => {
           <button
             type="button"
             onClick={handleGoogleSignIN}
-            className="btn btn-outline h-10 min-h-10 border-[#e1e8e1] bg-transparent rounded-lg text-sm font-semibold text-[#1D271F] hover:border-[#05893E] hover:bg-[#05893E]/5"
+            className="btn btn-outline h-10 min-h-10 border-[#e1e8e1] bg-transparent rounded-lg text-[13px] font-semibold text-[#1D271F] hover:border-[#05893E] hover:bg-[#05893E]/5"
           >
             <Image src={Google} alt="Google" className="h-5 w-5" />
             Google দিয়ে চালিয়ে যান
@@ -170,7 +191,7 @@ const SignUpPage = () => {
           <button
             onClick={handleGitHubSignIn}
             type="button"
-            className="btn btn-outline h-10 min-h-10 border-[#e1e8e1] bg-transparent text-sm rounded-lg font-semibold text-[#1D271F] hover:border-[#05893E] hover:bg-[#05893E]/5"
+            className="btn btn-outline h-10 min-h-10 border-[#e1e8e1] bg-transparent text-[13px] rounded-lg font-semibold text-[#1D271F] hover:border-[#05893E] hover:bg-[#05893E]/5"
           >
             <Image src={Github} alt="Github" className="h-5 w-5" />
             GitHub দিয়ে চালিয়ে যান

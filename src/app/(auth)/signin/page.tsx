@@ -6,6 +6,7 @@ import Google from "@/assets/Google.png";
 import { signIn } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { useEffect } from "react";
 const SignInPage = () => {
   const router = useRouter();
   const onSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
@@ -15,39 +16,78 @@ const SignInPage = () => {
       email: string;
       password: string;
     };
-
+    try{
     const { data, error } = await signIn.email({
       ...user,
-      callbackURL: "/",
+      callbackURL: "/?login=success",
     });
-
-    if (data) {
-      toast.success("সাইন ইন সফল হয়েছে!");
-      router.push("/");
-    }
-
     if (error) {
       toast.error("ইমেইল বা পাসওয়ার্ড ভুল হয়েছে!");
+      return;
+    }
+    if (data) {
+      router.push("/?login=success");
+    }
+    } catch {
+      toast.error("লগইন করা যায়নি। আবার চেষ্টা করুন।");
     }
   };
 
+  useEffect(() => {
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.get("redirected") === "1") {
+    toast.error("এই পেজটি দেখতে আগে সাইন ইন করুন।");
+
+    params.delete("redirected");
+
+    const query = params.toString();
+    const newUrl =
+      window.location.pathname + (query ? `?${query}` : "");
+
+    window.history.replaceState({}, "", newUrl);
+  }
+  }, []);
+  
   const handleGoogleSignIN = async () => {
-    const data = await signIn.social({
-      provider: "google",
+      toast.loading("Google দিয়ে সাইন ইন করা হচ্ছে...", {
+      id: "social-signin",
     });
-    toast.success("Signing in with google!")
-    console.log(data);
+    try {
+      const { error } = await signIn.social({
+      provider: "google",
+      callbackURL: "/?login=success",
+      });
+        if (error) {
+          toast.error("Google দিয়ে সাইন ইন করা যায়নি!", {
+          id: "social-signin",
+        });
+      }
+    } catch {
+      toast.error("Google দিয়ে সাইন ইন করা যায়নি!", {
+        id: "social-signin",
+      });
+    }
   };
 
   const handleGitHubSignIn = async () => {
+      toast.loading("GitHub দিয়ে সাইন ইন করা হচ্ছে...", {
+      id: "social-signin",
+    });
     try {
-      await signIn.social({
+      const { error } = await signIn.social({
         provider: "github",
-        callbackURL: "/",
+        callbackURL: "/?login=success",
       });
-      toast.success("Github দিয়ে সাইন আপ করা হয়েছে")
+      if (error) {
+        toast.error("GitHub দিয়ে সাইন ইন করা যায়নি!", {
+        id: "social-signin",
+      });
+    }
     } catch {
-      toast.error("Github দিয়ে সাইন আপ করা যায়নি!");
+      toast.error("Github দিয়ে সাইন ইন করা যায়নি!", {
+        id: "social-signin",
+      });
     }
   }
   return (
@@ -116,7 +156,7 @@ const SignInPage = () => {
           <button
             onClick={handleGoogleSignIN}
             type="button"
-            className="btn btn-outline h-10 min-h-10 border-[#e1e8e1] bg-transparent rounded-lg text-sm font-semibold text-[#1D271F] hover:border-[#05893E] hover:bg-[#05893E]/5"
+            className="btn btn-outline h-10 min-h-10 border-[#e1e8e1] bg-transparent rounded-lg text-[13px] font-semibold text-[#1D271F] hover:border-[#05893E] hover:bg-[#05893E]/5"
           >
             <Image src={Google} alt="Google" className="h-5 w-5" />
             Google দিয়ে চালিয়ে যান
@@ -125,7 +165,7 @@ const SignInPage = () => {
           <button
             onClick={handleGitHubSignIn}
             type="button"
-            className="btn btn-outline h-10 min-h-10 border-[#e1e8e1] bg-transparent text-sm rounded-lg font-semibold text-[#1D271F] hover:border-[#05893E] hover:bg-[#05893E]/5"
+            className="btn btn-outline h-10 min-h-10 border-[#e1e8e1] bg-transparent text-[13px] rounded-lg font-semibold text-[#1D271F] hover:border-[#05893E] hover:bg-[#05893E]/5"
           >
             <Image src={Github} alt="Github" className="h-5 w-5" />
             GitHub দিয়ে চালিয়ে যান
@@ -143,7 +183,7 @@ const SignInPage = () => {
       </div>
       <Link
         href={"/"}
-        className="mt-6 text-xs sm:text-sm text[#1d271f]/60 hover:text-[#046E32] "
+        className="mt-6 text-xs sm:text-sm text-[#1d271f]/60 hover:text-[#046E32] "
       >
         ← হোম পেজে ফিরে যান
       </Link>

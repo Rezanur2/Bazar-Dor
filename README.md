@@ -4,7 +4,7 @@ A modern, responsive market price tracking application built with Next.js. Bazar
 
 ## 🌐 Live Demo
 
-- **Live Website:** Add your deployed Vercel URL
+- **Live Website:** https://bazar-dor-sigma-six.vercel.app
 - **GitHub Repository:** https://github.com/Rezanur2/B14-A7-Bazar-Dor
 
 ## 📖 About
@@ -65,47 +65,97 @@ BazarDor uses the Programming Hero BazarDor API to retrieve product and category
 ## 📁 Project Structure
 
 ```text
-B14-A7-Bazar-Dor/
+
+bazar-dor/
 ├── public/
+│
 ├── src/
 │   ├── app/
 │   │   ├── (auth)/
 │   │   │   ├── signin/
+│   │   │   │   └── page.tsx
 │   │   │   └── signup/
+│   │   │       └── page.tsx
+│   │   │
 │   │   ├── api/
 │   │   │   └── auth/
 │   │   │       └── [...all]/
+│   │   │           └── route.ts
+│   │   │
 │   │   ├── category/
-│   │   │   └── [category]/
+│   │   │   └── [categoryId]/
+│   │   │       ├── loading.tsx
+│   │   │       └── page.tsx
+│   │   │
 │   │   ├── product/
-│   │   │   └── [product]/
+│   │   │   └── [productId]/
+│   │   │       ├── loading.tsx
+│   │   │       └── page.tsx
+│   │   │
 │   │   ├── profile/
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── not-found.tsx       # Root 404 page
 │   │   ├── favicon.ico
 │   │   ├── globals.css
 │   │   ├── layout.tsx
 │   │   ├── loading.tsx
-│   │   └── page.tsx
+│   │   └── page.tsx            # Home page
+│   │
+│   ├── assets/
+│   │   ├── bazar-hero.png
+│   │   ├── demoMaleAvatar.jpg
+│   │   ├── github.png
+│   │   ├── Google.png
+│   │   └── logo.png
+│   │
 │   ├── components/
 │   │   ├── home/
+│   │   │   ├── AllProductsPrice.tsx
 │   │   │   ├── Banner.tsx
 │   │   │   ├── PriceDown.tsx
 │   │   │   └── PriceUp.tsx
+│   │   │
 │   │   ├── shared/
+│   │   │   ├── ActiveLink.tsx
+│   │   │   ├── Footer.tsx
+│   │   │   ├── Header.tsx
+│   │   │   ├── inline-script.tsx
+│   │   │   ├── LocalDate.tsx
+│   │   │   ├── NavLinks.tsx
+│   │   │   └── UserInfo.tsx
+│   │   │
 │   │   ├── Marquee.tsx
 │   │   ├── ProductCard.tsx
 │   │   ├── ProductNotFound.tsx
 │   │   ├── ProductSkeleton.tsx
 │   │   └── SortFilter.tsx
-│   ├── hooks/
+│   │
 │   ├── lib/
+│   │   ├── auth-client.ts
+│   │   └── auth.ts
+│   │
 │   ├── services/
+│   │   └── baseUrl.js
+│   │
 │   ├── types/
+│   │   └── index.ts
+│   │
 │   └── utils/
+│       ├── format.ts
+│       └── proxy.ts
+│
 ├── .env
 ├── .gitignore
+├── AGENTS.md
+├── eslint.config.mjs
+├── next-env.d.ts
+├── next.config.ts
 ├── package.json
+├── package-lock.json
 ├── README.md
 └── tsconfig.json
+
 ```
 
 *Note: This structure is based on the visible project files. Some filenames and folders may differ in your local repository.*
@@ -191,7 +241,7 @@ The goal is to build a responsive market price application with product browsing
 
 ## 👨‍💻 Author
 
-**Rezanur Rahman**
+**Md Rezanur Rahman**
 
 GitHub: [@Rezanur2](https://github.com/Rezanur2)
 
