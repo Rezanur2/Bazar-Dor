@@ -60,7 +60,7 @@ const UserInfo = () => {
                   <Image src={user.image || Avatar} alt={user.name} width={30} height={30} />
                 </div>
               </div>
-              <span className="text-sm font-bold tracking-wide group-hover:text-green-600 transition-colors">
+              <span className="text-sm max-sm:hidden font-bold tracking-wide group-hover:text-green-600 transition-colors">
                 {user.name}
               </span>
               <span className="text-[10px] text-gray-400 group-hover:text-green-600 transition-colors mt-0.5">
