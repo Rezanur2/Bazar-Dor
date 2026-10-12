@@ -36,6 +36,15 @@ const UserInfo = () => {
     }
   };
 
+  if (isPending) {
+  return (
+    <div className="flex gap-2 items-center">
+      <div className="h-9 w-20 rounded-lg bg-base-200 animate-pulse" />
+      <div className="h-9 w-20 rounded-lg bg-base-200 animate-pulse" />
+    </div>
+  );
+}
+
   return (
     <div>
       {user ? (
