@@ -4,7 +4,7 @@ const Loading = () => {
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 sm:px-6 lg:px-8">
         <div className="h-4 w-44 rounded bg-gray-300" />
 
-        <section className="my-4 flex flex-col items-start justify-between gap-5 rounded-2xl border border-base-300 bg-base-100 p-4 shadow-sm sm:p-5 md:flex-row md:items-center">
+        <section className="my-4 flex flex-col items-start justify-between gap-5 rounded-2xl border border-base-300 bg-base-100 p-4 shadow-sm sm:p-5 sm:flex-row md:items-center">
           <div className="flex w-full items-center gap-3">
             <div className="size-18 shrink-0 rounded-xl bg-gray-200" />
 
@@ -26,7 +26,7 @@ const Loading = () => {
         <section className="rounded-2xl bg-base-100 p-5">
           <div className="mb-4 h-6 w-36 rounded bg-gray-200" />
 
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+          <div className="grid gap-3 grid-cols-3">
             {[1, 2, 3].map((item) => (
               <div
                 key={item}

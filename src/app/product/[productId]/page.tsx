@@ -103,7 +103,7 @@ const ProductPage = async ({ params }: ProductProps) => {
           </ul>
         </div>
 
-        <section className="flex flex-col items-start justify-between gap-5 rounded-2xl border border-base-300 bg-base-100 my-4 p-4 shadow-sm sm:p-5 md:flex-row md:items-center">
+        <section className="flex flex-col items-start justify-between gap-5 rounded-2xl border border-base-300 bg-base-100 my-4 p-4 shadow-sm sm:p-5 sm:flex-row md:items-center">
           <div className="flex min-w-0 items-center gap-3">
             <div className="flex size-18 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-base-200 text-4xl">
               {product.image || product.icon || product.categoryIcon || "🌾"}
@@ -157,7 +157,7 @@ const ProductPage = async ({ params }: ProductProps) => {
             দামের সারসংক্ষেপ
           </h2>
 
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 max-sm:text-center">
+          <div className="grid gap-3 grid-cols-3 max-sm:text-center">
             {[
               {
                 label: "সর্বনিম্ন দাম",
