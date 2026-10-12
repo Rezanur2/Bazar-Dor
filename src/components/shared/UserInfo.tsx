@@ -118,12 +118,11 @@ const UserInfo = () => {
         <div>
           <div className="flex gap-0.5 sm:gap-2 text-sm font-semibold">
             <Link href={"/signin"}>
-              <button className="btn max-sm:btn-sm px-3 sm:px-4 text-xs sm:text-sm py-1 bg-base-200 rounded-lg hover:bg-[#046E32] hover:text-white text-base-content border-0 transition-all duration-200 cursor-pointer">
+              <button className="btn max-sm:btn-sm px-3 sm:px-4 text-xs sm:text-sm py-1 rounded-lg bg-[#f3fbf4] hover:bg-[#046E32] hover:text-white text-base-content border-0 transition-all duration-200 cursor-pointer">
                 সাইন ইন
               </button>
             </Link>
             <Link href={"/signup"}>
-              {" "}
               <button className="btn max-sm:btn-sm px-3 sm:px-4 text-xs sm:text-sm py-1 bg-[#05893E] text-white hover:bg-[#046E32] rounded-lg border-0 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer">
                 সাইন আপ
               </button>
